@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import Infinity from "./components/infiniteScroll";
+import "./styles/main.css";
 // const fetchData = require("./components/utils").fetchData;
 
 function App() {
-  const [state, setState] = useState([]);
   return (
     <div className="App">
-      <Infinity state={state} setState={setState} />
+      <Infinity />
     </div>
   );
 }

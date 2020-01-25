@@ -20,11 +20,15 @@ export default function InfiniteScroll() {
   }, []);
 
   function handleScroll() {
-    if (
-      window.innerHeight + document.documentElement.scrollTop !==
-      document.documentElement.clientHeight
-    ) {
-      console.log("fetch more");
+    // Fetch variables
+    var scrollTop = document.documentElement.scrollTop;
+    var windowHeight = window.innerHeight;
+    var bodyHeight = document.documentElement.clientHeight - windowHeight;
+    var scrollPercentage = scrollTop / bodyHeight;
+
+    // if the scroll is more than 90% from the top, load more content.
+    if (scrollPercentage > 0.5) {
+      // Load content
       fetchData();
     }
   }

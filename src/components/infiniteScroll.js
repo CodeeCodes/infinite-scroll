@@ -12,7 +12,7 @@ export default function InfiniteScroll() {
       fetchData(loadData);
       setLoadData(false);
     }
-  }, []);
+  }, [loadData]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -20,17 +20,11 @@ export default function InfiniteScroll() {
   }, []);
 
   function handleScroll() {
-    // Fetch variables
-    var scrollTop = document.documentElement.scrollTop;
-    var windowHeight = window.innerHeight;
-    var bodyHeight = document.documentElement.clientHeight - windowHeight;
-    var scrollPercentage = scrollTop / bodyHeight;
-
-    // if the scroll is more than 90% from the top, load more content.
-    if (scrollPercentage > 0.5) {
-      // Load content
+    if (
+      window.innerHeight + document.documentElement.scrollTop ===
+      document.documentElement.offsetHeight
+    )
       fetchData();
-    }
   }
 
   //fetching the data, randomizing the data in the response and selecting a random 100 subset
@@ -41,7 +35,7 @@ export default function InfiniteScroll() {
         .then(response => {
           const arrRan = response.data
             .sort(() => 0.5 - Math.random())
-            .slice(0, 20);
+            .slice(0, 30);
           setState([...state, arrRan]);
         });
     }

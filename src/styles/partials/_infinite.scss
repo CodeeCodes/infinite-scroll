@@ -2,9 +2,15 @@
   display: flex;
   flex-wrap: wrap;
   margin: 0 5%;
-  //   height: 900px;
+  border: 1px solid;
+  // height: 900px;
+  overflow: auto;
   &__div {
-    width: 25%;
+    width: 20%;
     text-align: center;
+  }
+
+  &__div::hover {
+    background-color: #ccc;
   }
 }
